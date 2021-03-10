@@ -18,6 +18,7 @@ router.post('/', (ctx, next) => {
     ctx.body = ctx.request.body;
 });
 
+router.use('./posts', posts.router());
 app.use(router.routes());
 app.use(router.allowedMethods());
 
