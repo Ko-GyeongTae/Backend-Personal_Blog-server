@@ -6,9 +6,11 @@
   "author": "Ko-GyeongTae",
   "license": "MIT",
   "dependencies": {
+    "cors": "^2.8.5",
     "jsonwebtoken": "^8.5.1",
     "koa": "^2.13.1",
     "koa-bodyparser": "^4.3.0",
+    "koa-helmet": "^6.1.0",
     "koa-logger": "^3.2.1",
     "koa-router": "^10.0.0",
     "nodemon": "^2.0.7"

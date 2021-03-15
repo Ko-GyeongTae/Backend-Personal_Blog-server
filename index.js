@@ -1,27 +1,26 @@
-const Koa = require('koa');
-const Router = require('koa-router');
-const Logger = require('koa-logger');
-const bodyParser = require('koa-bodyparser');
+import Koa from "koa";
+import Router from "koa-router";
+import logger from "koa-logger";
+import koaBody from "koa-bodyparser";
+import http from "http";
+import cors from "cors";
+import helmet from "koa-helmet";
+
+import api from './api';
 
 const app = new Koa();
 const router = new Router();
 
-app.use(Logger());
-app.use(bodyParser());
-router.get('/', async(ctx, next) => {
-    console.log(ctx);
-    ctx.body = "home";
-});
+app.use(helmet());
+app.use(cors());
+app.use(logger());
+app.use(koaBody());
 
-router.post('/', (ctx, next) => {
-    console.log(ctx.request.body);
-    ctx.body = ctx.request.body;
-});
+app.use(router.routes()).use(router.allowedMethods());
 
-router.use('./posts', posts.router());
-app.use(router.routes());
-app.use(router.allowedMethods());
+router.use('/api', api.routes());
 
-app.listen(4500, () => {
-    console.log("✅Server is running on port : 4500");
-});
+let serverCallback = app.callback();
+let httpServer = http.createServer(serverCallback);
+
+httpServer.listen(4000, () => { console.log("success 4000")});
