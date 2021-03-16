@@ -1,9 +1,26 @@
-const Router = require('koa-router');
-const src = new Router();
+import Koa from "koa";
+import Router from "koa-router";
+import logger from "koa-logger";
+import koaBody from "koa-bodyparser";
+import * as http from "http";
+import cors from "cors";
+import * as helmet from "koa-helmet";
 
-const posts = require('./posts');
+import api from "./api";
 
-src.use('/posts', posts.routes());
+const app = new Koa();
+const router = new Router();
 
+app.use(helmet());
+app.use(cors());
+app.use(logger());
+app.use(koaBody());
 
-module.exports = src;
+app.use(router.routes()).use(router.allowedMethods());
+
+router.use('/api', api.routes());
+
+let serverCallback = app.callback();
+let httpServer = http.createServer(serverCallback);
+
+httpServer.listen(4000, () => { console.log("success 4000")});
