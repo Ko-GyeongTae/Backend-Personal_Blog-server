@@ -1,10 +1,10 @@
 import Koa from "koa";
-import Router from "koa-router";
+import Router from "@koa/router";
 import logger from "koa-logger";
 import koaBody from "koa-bodyparser";
-import * as http from "http";
-import cors from "cors";
-import * as helmet from "koa-helmet";
+import http from "http";
+import cors from "@koa/cors";
+import helmet from "koa-helmet";
 
 import api from "./api";
 
@@ -17,6 +17,7 @@ app.use(logger());
 app.use(koaBody());
 
 app.use(router.routes()).use(router.allowedMethods());
+
 
 router.use('/api', api.routes());
 

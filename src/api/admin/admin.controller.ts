@@ -1,3 +1,6 @@
-export const Test = async(ctx) => {
-    ctx.body="admin Test";
-}
+export const Test = (async(ctx) => {
+
+    console.log('asdadsads');
+    
+    ctx.body = {'dir' : 'admin/home'};
+});

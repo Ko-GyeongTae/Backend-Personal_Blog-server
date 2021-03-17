@@ -1,4 +1,4 @@
-import Router from "koa-router";
+import Router from "@koa/router";
 import { Test } from "./admin.controller";
 
 const admin = new Router();
