@@ -1,3 +1,7 @@
+export const home = (async(ctx) => {
+    ctx.body = "home";
+});
+
 export const profile = (async(ctx) => {
     ctx.body = "profile";
 });
