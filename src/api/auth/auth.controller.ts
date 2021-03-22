@@ -1,5 +1,7 @@
 export const signup = (async(ctx) => {
-    console.log(ctx.request.body); 
+    console.log(ctx.request); 
+    const { id } = ctx.request.body;
+    console.log(id);
     ctx.body = "signup";
 });
 
