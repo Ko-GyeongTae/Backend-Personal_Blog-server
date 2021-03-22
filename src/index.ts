@@ -8,15 +8,14 @@ import helmet from "koa-helmet";
 import "reflect-metadata";
 import {createConnection} from "typeorm";
 import * as dotenv from "dotenv";
-dotenv.config();
+dotenv.config(); //환경변수 제거
 
 import api from "./api";
-import { User } from "./entity/User";
 
 const app = new Koa();
 const router = new Router();
 
-app.use(helmet());
+app.use(helmet()); 
 app.use(cors());
 app.use(logger());
 app.use(koaBody());
@@ -25,7 +24,7 @@ app.use(router.routes()).use(router.allowedMethods());
 
 router.use('/api', api.routes());
 
-createConnection({
+createConnection({ //MySQL 서버 연결
     type: 'mysql',
     host: 'localhost',
     port: 3306,
@@ -34,11 +33,10 @@ createConnection({
     database: "test",
     synchronize: true,
     entities: [
-        __dirname + "/entity/*.{js,ts}"
+        __dirname + "/entity/*.{js,ts}" //Entity 경로 설정
     ]
 }).then(async connection => {
     console.log("Account Controller connect to MySQL successfully!");
-    console.log("succcess");
 }).catch(error => console.log(error));
 
 let serverCallback = app.callback();
