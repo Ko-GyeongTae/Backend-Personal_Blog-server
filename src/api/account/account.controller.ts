@@ -5,8 +5,8 @@ import {User} from "../../entity/User";
 dotenv.config();
 
 export const accountTest = async(ctx) => {
-    const connection = getConnection();
-    console.log(ctx.request.body);
+    const connection = await getConnection();
+    //console.log(ctx.request.body);
     const user = new User();
     user.id = '22';
     user.firstName = 'ko';
@@ -17,8 +17,8 @@ export const accountTest = async(ctx) => {
 }
 
 export const accountTest2 = async(ctx) => {
-    const connection = getConnection();
-    console.log(ctx.request.body);
+    const connection = await getConnection();
+    //console.log(ctx.request.body);
     const user = new User();
     user.id = '23';
     user.firstName = '홍';

@@ -34,7 +34,7 @@ createConnection({
     database: "test",
     synchronize: true,
     entities: [
-        "/src/entity/*.{js,ts}"
+        __dirname + "/entity/*.{js,ts}"
     ]
 }).then(async connection => {
     console.log("Account Controller connect to MySQL successfully!");
