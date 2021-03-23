@@ -3,24 +3,19 @@ import { accountTest, accountTest2, accountTest3 } from "./account/account.contr
 import admin from "./admin";
 import { Test } from "./admin/admin.controller";
 import { login, logout, signup } from "./auth/auth.controller";
-import { activity, profile, postview, home } from "./post/post.controller";
+import { getComment } from "./post/post.controller";
 
 const api = new Router();
 
 api.use("/admin", admin.routes()); //Admin Route설정
 
-api.get("/", Test); //API Test 
-api.get("/home", home); //Home 정보 호출
-api.get("/profile", profile); //Profile 정보 호출
-api.get("/activity", activity); //Acitivity 정보 호출
-api.get("/post", postview);
+api.get("/comment/:id", getComment); //댓글조회
+api.get("/logout", logout); //로그아웃
 
 api.post("/signup", signup); //회원가입
 api.post("/login", login); //로그인
-api.post("/logout", logout); //로그아웃
+api.post("/comment"); //댓글작성
 
-api.get("/account", accountTest);
-api.get("/account2", accountTest2);
-api.get("/account3", accountTest3);
+api.delete("/comment"); //댓글삭제
 
 export default api;
