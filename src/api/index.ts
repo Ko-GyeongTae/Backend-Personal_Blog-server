@@ -3,7 +3,7 @@ import { accountTest, accountTest2, accountTest3 } from "./account/account.contr
 import admin from "./admin";
 import { Test } from "./admin/admin.controller";
 import { login, logout, signup } from "./auth/auth.controller";
-import { getComment } from "./post/post.controller";
+import { createComment, getComment } from "./post/post.controller";
 
 const api = new Router();
 
@@ -14,7 +14,7 @@ api.get("/logout", logout); //로그아웃
 
 api.post("/signup", signup); //회원가입
 api.post("/login", login); //로그인
-api.post("/comment"); //댓글작성
+api.post("/comment", createComment); //댓글작성
 
 api.delete("/comment"); //댓글삭제
 
