@@ -40,5 +40,5 @@ export const accountTest3 = async(ctx) => {
     const connection = await getConnection();
     const TimeStamp = Date.now();
     const date = new Date(TimeStamp);
-    
+    ctx.body = date;
 }
