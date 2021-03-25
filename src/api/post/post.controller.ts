@@ -2,7 +2,10 @@ import { getConnection } from "typeorm";
 import { Comment } from "../../entity/Comment";
 
 export const getComment = (async(ctx) => {
-    
+    ctx.body = {
+        "req": ctx.request.body,
+        "route": "getComment"
+    };
 
 });
 
