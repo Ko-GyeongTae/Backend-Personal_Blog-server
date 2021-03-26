@@ -5,29 +5,40 @@ import { User } from "../../entity/User";
 dotenv.config();
 
 export const signup = (async(ctx) => {
-    const req = ctx.request.body
+    const req = ctx.request.body;
+    let body, status; 
     console.log(req); 
     const connection = await getConnection();
     const TimeStamp = Date.now();
     const date = new Date(TimeStamp);
     const user = new User();
-    if(req.password !== req.confirm){
-        throw Error("Password is not same");
+    if(req.name === "" || req.email === ""){
+        status = 400;
+        body = "Fill information";
+    } else if(req.password !== req.confirm){
+        status = 400;
+        body = "Check Password";
+    } else {
+        user.name = req.name;
+        user.email = req.email;
+        user.password = req.password;
+        user.createdAt = date;
+        status = 200;
+        body = user;
     }
-    user.name = req.name;
-    user.email = req.email;
-    user.password = req.password;
-    user.createdAt = date;
-    ctx.body = req;
-    await connection.manager.save(user);
+    ctx.body = body;
+    ctx.status = status;
+    //await connection.manager.save(user);
 });
 
 export const login = (async(ctx) => {
-    console.log(ctx.request.body);
-    ctx.body = "login";
+    const req = ctx.request.body;
+    console.log(req);
+    ctx.body = req;
 });
 
 export const logout = (async(ctx) => {
-    console.log(ctx.request.body);
-    ctx.body = "logout";
+    const req = ctx.request.body;
+    console.log(req);
+    ctx.body = req;
 })
