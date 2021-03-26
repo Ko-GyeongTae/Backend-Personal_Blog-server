@@ -36,10 +36,11 @@ createConnection({ //MySQL 서버 연결
         __dirname + "/entity/*.{js,ts}" //Entity 경로 설정
     ]
 }).then(async connection => {
-    console.log("Account Controller connect to MySQL successfully!");
+    console.log("MySQL Server running on port 3306!");
+    console.log("Connect to MySQL successfully!");
 }).catch(error => console.log(error));
 
 let serverCallback = app.callback();
 let httpServer = http.createServer(serverCallback);
 
-httpServer.listen(4000, () => { console.log("success 4000")});
+httpServer.listen(4000, () => { console.log("Server is running on port 4000!")});

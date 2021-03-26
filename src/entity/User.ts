@@ -3,7 +3,7 @@ import {Entity, PrimaryGeneratedColumn, Column} from "typeorm";
 @Entity()
 export class User { //User Entity
 
-    @PrimaryGeneratedColumn()
+    @PrimaryGeneratedColumn('increment')
     id: number;
 
     @Column()
@@ -17,7 +17,4 @@ export class User { //User Entity
 
     @Column()
     createdAt: Date;
-
-    @Column()
-    updatedAt: Date;
 }
