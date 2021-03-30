@@ -15,9 +15,6 @@ export const signup = (async(ctx) => {
     if(req.name === "" || req.email === ""){
         status = 400;
         body = "Fill information";
-    } else if(req.password !== req.confirm){
-        status = 400;
-        body = "Check Password";
     } else {
         user.name = req.name;
         user.email = req.email;
