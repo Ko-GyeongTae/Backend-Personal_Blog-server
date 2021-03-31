@@ -1,7 +1,7 @@
 module.exports = {
     apps: [{
     name: 'Blog',
-    script: './src/index.ts',
+    script: 'yarn start',
     instances: 2,
     exec_mode: "cluster"
     }]
