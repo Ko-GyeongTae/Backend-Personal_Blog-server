@@ -1,7 +1,7 @@
 module.exports = {
     apps: [{
-    name: 'app',
-    script: './app.js',
+    name: 'Blog',
+    script: './src/index.ts',
     instances: 2,
     exec_mode: "cluster"
     }]
