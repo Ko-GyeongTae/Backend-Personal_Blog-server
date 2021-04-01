@@ -2,8 +2,6 @@ import { getConnection } from "typeorm";
 import { Comment } from "../../entity/Comment";
 
 export const getComment = (async(ctx) => {
-    const req = ctx.request.body;
-    console.log(req);
     const comments = await getConnection().createQueryBuilder()
     .select("comment")
     .from(Comment, "comment")
@@ -23,11 +21,19 @@ export const createComment = (async(ctx) => {
     comment.writer = req.writer;
     comment.context = req.context;
     comment.createdAt = date;
+    comment.isRemoved = false;
     await connection.manager.save(comment);
 });
 
 export const deleteComment = (async(ctx) => {
     const req = ctx.request.body;
     console.log(req);
-    ctx.body = req;
+    const comment = await getConnection().createQueryBuilder()
+    .update(Comment)
+    .set({
+        isRemoved: true
+    })
+    .where("id = :id", {id: req.id})
+    .execute();
+    ctx.body = req.id;
 });

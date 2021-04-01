@@ -14,4 +14,7 @@ export class Comment { //Post Entity
 
     @Column()
     createdAt: Date;
+
+    @Column()
+    isRemoved: boolean;
 }
