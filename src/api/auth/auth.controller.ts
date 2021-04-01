@@ -5,13 +5,22 @@ dotenv.config();
 
 export const confirmName = (async(name, email) => {
     console.log(name, email);
-    let result = await getConnection().getRepository(User).createQueryBuilder()
-    .where("user.name = :name", {name: name})
-    .getOne();
-    if(result === undefined){
+    let result;
+    try{
         result = await getConnection().getRepository(User).createQueryBuilder()
-        .where("user.email = :email", {email: email})
+        .where("user.name = :name", {name: name})
         .getOne();
+    } catch (e){
+        console.log("Not Found same name");
+    }
+    if(result === undefined){
+        try{
+            result = await getConnection().getRepository(User).createQueryBuilder()
+            .where("user.email = :email", {email: email})
+            .getOne();
+        } catch (e) {
+            console.log("Not Found same email");
+        }
     }
     console.log(result);
     return result;
@@ -29,17 +38,17 @@ export const signup = (async(ctx) => {
     if(req.name === "" || req.email === ""){
         status = 400;
         body = "Fill information";
-    } else if(req.name === confirmObj.name || req.email === confirmObj.email) {
+    } else if(confirmObj) {
         status = 400;
         body = "You can't account";
-    }else {
+    } else {
         user.name = req.name;
         user.email = req.email;
         user.password = req.password;
         user.createdAt = date;
         status = 200;
         body = user;
-        //await connection.manager.save(user);
+        await connection.manager.save(user);
     }
     ctx.body = body;
     ctx.status = status;
