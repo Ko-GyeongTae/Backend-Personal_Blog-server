@@ -1,7 +1,7 @@
 import Router from "@koa/router";
 import admin from "./admin";
 import { login, logout, signup } from "./auth/auth.controller";
-import { createComment, deleteComment, getComment } from "./post/post.controller";
+import { createComment, deleteComment, getComment } from "./comment/comment.controller";
 
 const api = new Router();
 

@@ -4,7 +4,11 @@ import { Comment } from "../../entity/Comment";
 export const getComment = (async(ctx) => {
     const req = ctx.request.body;
     console.log(req);
-    ctx.body = req;
+    const comments = await getConnection().createQueryBuilder()
+    .select("comment")
+    .from(Comment, "comment")
+    .getMany();
+    ctx.body = comments;
 });
 
 export const createComment = (async(ctx) => {
