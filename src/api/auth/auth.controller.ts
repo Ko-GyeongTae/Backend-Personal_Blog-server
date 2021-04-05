@@ -45,7 +45,6 @@ export const signup = (async(ctx) => {
         user.name = req.name;
         user.email = req.email;
         user.password = req.password;
-        user.createdAt = date;
         status = 200;
         body = user;
         await connection.manager.save(user);

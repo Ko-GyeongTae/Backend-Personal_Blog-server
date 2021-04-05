@@ -3,8 +3,8 @@ import {Entity, PrimaryGeneratedColumn, Column} from "typeorm";
 @Entity()
 export class User { //User Entity
 
-    @PrimaryGeneratedColumn('increment')
-    id: number;
+    @PrimaryGeneratedColumn('uuid')
+    id: string;
 
     @Column()
     name: string;
@@ -15,6 +15,6 @@ export class User { //User Entity
     @Column()
     password: string;
 
-    @Column()
-    createdAt: Date;
+    @Column({type:"timestamp", default: () => "CURRENT_TIMESTAMP"})
+    createdAt: string;
 }

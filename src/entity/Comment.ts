@@ -1,20 +1,23 @@
 import {Entity, PrimaryGeneratedColumn, Column} from "typeorm";
 
 @Entity()
-export class Comment { //Post Entity
+export class Comment {
 
-    @PrimaryGeneratedColumn('increment')
-    id: number;
+  @PrimaryGeneratedColumn("uuid")
+  PostID: string;
 
-    @Column()
-    context: string;
+  @Column()
+  userUid: string;
 
-    @Column()
-    writer: string;
+  @Column()
+  content: string;
 
-    @Column()
-    createdAt: Date;
+  @Column()
+  order: number;
 
-    @Column()
-    isRemoved: boolean;
+  @Column({ type: 'boolean', default: false})
+  isDel: boolean;
+
+  @Column({ type: "timestamp", default: () => "CURRENT_TIMESTAMP"})
+  date: string;
 }
